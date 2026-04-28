@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMKN9 SHOP</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a1f3c;
+    --deep: #0d1124;
+    --purple: #6b4fa0;
+    --pink: #e8a0c8;
+    --lavender: #c4b5f4;
+    --gold: #f5a623;
+    --light: #f0eefa;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--deep);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 60px;
+    background: rgba(13,17,36,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .nav-logo img {
+    width: 48px; height: 48px; border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .nav-logo span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.04em;
+    color: var(--lavender);
+  }
+
+  .nav-links {
+    display: flex; align-items: center; gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    text-decoration: none; color: rgba(255,255,255,0.75);
+    font-size: 0.9rem; font-weight: 500; letter-spacing: 0.05em;
+    transition: color 0.25s;
+  }
+
+  .nav-links a:hover { color: var(--lavender); }
+
+  .nav-cta {
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    color: var(--navy) !important;
+    padding: 10px 28px;
+    border-radius: 50px;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 20px rgba(196,181,244,0.3);
+    transition: transform 0.2s, box-shadow 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(196,181,244,0.45) !important;
+    color: var(--navy) !important;
+  }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg,
+      #2a2f5c 0%,
+      #3d3570 30%,
+      #a06090 65%,
+      #c896b0 85%,
+      #d4a8c0 100%);
+  }
+
+  /* city silhouette */
+  .city {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 260px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 260'%3E%3Cpath fill='%231a1f3c' d='M0,260 L0,180 L40,180 L40,120 L70,120 L70,100 L90,100 L90,180 L120,180 L120,90 L150,90 L150,60 L170,60 L170,90 L200,90 L200,130 L240,130 L240,80 L260,80 L260,50 L280,50 L280,80 L310,80 L310,140 L340,140 L340,100 L360,100 L360,70 L380,70 L380,100 L420,100 L420,140 L460,140 L460,110 L490,110 L490,85 L510,85 L510,110 L550,110 L550,150 L590,150 L590,100 L620,100 L620,65 L650,65 L650,100 L690,100 L690,150 L730,150 L730,110 L760,110 L760,80 L790,80 L790,110 L830,110 L830,150 L870,150 L870,90 L900,90 L900,60 L920,60 L920,90 L960,90 L960,140 L1000,140 L1000,100 L1030,100 L1030,75 L1050,75 L1050,100 L1090,100 L1090,145 L1130,145 L1130,110 L1150,110 L1150,85 L1170,85 L1170,110 L1210,110 L1210,160 L1250,160 L1250,110 L1280,110 L1280,80 L1300,80 L1300,110 L1340,110 L1340,160 L1380,160 L1380,190 L1440,190 L1440,260 Z'/%3E%3C/svg%3E") no-repeat bottom center / cover;
+  }
+
+  .tree-silhouette {
+    position: absolute; bottom: 180px; left: 40px;
+    width: 180px; height: 260px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 260'%3E%3Cellipse cx='80' cy='90' rx='75' ry='80' fill='%230d1124'/%3E%3Crect x='72' y='160' width='16' height='100' fill='%230d1124'/%3E%3C/svg%3E") no-repeat center / contain;
+  }
+
+  /* lamp posts */
+  .lamp { position: absolute; bottom: 185px; }
+  .lamp-left { left: 34%; }
+  .lamp-right { right: 20%; }
+  .lamp svg { width: 28px; height: 120px; }
+
+  /* fence */
+  .fence {
+    position: absolute; bottom: 155px; left: 0; right: 0;
+    height: 50px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50'%3E%3Crect x='0' y='10' width='200' height='6' fill='%231a1f3c'/%3E%3Crect x='0' y='26' width='200' height='4' fill='%231a1f3c'/%3E%3Crect x='5' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='20' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='35' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='50' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='65' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='80' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='95' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='110' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='125' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='140' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='155' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='170' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3Crect x='185' y='0' width='5' height='50' fill='%231a1f3c'/%3E%3C/svg%3E") repeat-x center / auto 100%;
+    opacity: 0.9;
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center;
+    padding: 120px 20px 60px;
+    max-width: 780px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(196,181,244,0.15);
+    border: 1px solid rgba(196,181,244,0.35);
+    color: var(--lavender);
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 6px 20px; border-radius: 50px;
+    margin-bottom: 20px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--white);
+    text-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    animation: fadeDown 0.9s 0.1s ease both;
+  }
+
+  .hero-sub {
+    margin: 20px auto 32px;
+    max-width: 520px;
+    font-size: 1rem; line-height: 1.7;
+    color: rgba(255,255,255,0.8);
+    animation: fadeDown 1s 0.2s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 16px; justify-content: center;
+    animation: fadeDown 1s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    color: var(--navy);
+    padding: 14px 36px; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 6px 24px rgba(196,181,244,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(196,181,244,0.5);
+  }
+
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.4);
+    color: var(--white);
+    padding: 14px 36px; border-radius: 50px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none;
+    backdrop-filter: blur(6px);
+    transition: background 0.2s, border-color 0.2s;
+  }
+
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.7);
+  }
+
+
+
+  .social-btn:hover { background: rgba(196,181,244,0.25); }
+
+  /* ── SECTIONS ── */
+  section { padding: 100px 60px; }
+
+  .section-label {
+    font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--lavender); margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900; line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    color: rgba(255,255,255,0.6);
+    max-width: 520px; line-height: 1.75; font-size: 0.95rem;
+    margin-bottom: 56px;
+  }
+
+  /* ── MENU ── */
+  #menu {
+    background: linear-gradient(180deg, var(--deep) 0%, var(--navy) 100%);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+  }
+
+  .menu-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 32px 28px;
+    display: flex; align-items: flex-start; gap: 20px;
+    transition: transform 0.25s, background 0.25s, border-color 0.25s;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+  }
+
+  .menu-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(196,181,244,0.06), rgba(232,160,200,0.06));
+    opacity: 0; transition: opacity 0.3s;
+  }
+
+  .menu-card:hover { transform: translateY(-6px); background: rgba(255,255,255,0.07); border-color: rgba(196,181,244,0.3); }
+  .menu-card:hover::before { opacity: 1; }
+
+  .menu-emoji {
+    width: 60px; height: 60px;
+    background: linear-gradient(135deg, rgba(196,181,244,0.15), rgba(232,160,200,0.15));
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; flex-shrink: 0;
+    border: 1px solid rgba(196,181,244,0.2);
+  }
+
+  .menu-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700;
+    margin-bottom: 6px; color: var(--white);
+  }
+
+  .menu-info p {
+    font-size: 0.83rem; color: rgba(255,255,255,0.55); line-height: 1.5;
+    margin-bottom: 12px;
+  }
+
+  .menu-price {
+    font-size: 1rem; font-weight: 700;
+    color: var(--lavender);
+  }
+
+  .menu-type {
+    font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 3px 12px; border-radius: 50px;
+    display: inline-block; margin-bottom: 8px;
+  }
+
+  .type-food { background: rgba(245,166,35,0.15); color: var(--gold); border: 1px solid rgba(245,166,35,0.25); }
+  .type-drink { background: rgba(196,181,244,0.15); color: var(--lavender); border: 1px solid rgba(196,181,244,0.25); }
+
+  /* divider */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(196,181,244,0.25), transparent);
+    margin: 0 60px;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-circle {
+    width: 360px; height: 360px; border-radius: 50%;
+    background: linear-gradient(135deg, rgba(196,181,244,0.1), rgba(232,160,200,0.1));
+    border: 1px solid rgba(196,181,244,0.2);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .about-circle::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(107,79,160,0.2), rgba(232,160,200,0.15));
+    border: 1px solid rgba(196,181,244,0.15);
+  }
+
+  .about-logo {
+    width: 200px; height: 200px; border-radius: 50%;
+    object-fit: cover; position: relative; z-index: 1;
+    box-shadow: 0 0 60px rgba(196,181,244,0.25);
+  }
+
+  .about-stat-row {
+    display: flex; gap: 32px; margin-top: 40px;
+  }
+
+  .stat {
+    text-align: center;
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900;
+    color: var(--lavender);
+  }
+
+  .stat-label {
+    font-size: 0.78rem; color: rgba(255,255,255,0.5);
+    margin-top: 4px; letter-spacing: 0.06em;
+  }
+
+  .feature-list {
+    display: flex; flex-direction: column; gap: 16px;
+    margin-top: 36px;
+  }
+
+  .feature-item {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 0.9rem; color: rgba(255,255,255,0.75);
+  }
+
+  .feature-dot {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--pink));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: linear-gradient(180deg, var(--navy) 0%, var(--deep) 100%);
+  }
+
+  .contact-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+
+  .contact-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px; padding: 48px 40px;
+  }
+
+  .contact-info-item {
+    display: flex; align-items: center; gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    font-size: 0.9rem; color: rgba(255,255,255,0.75);
+  }
+
+  .contact-info-item:last-child { border-bottom: none; }
+
+  .ci-icon {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(196,181,244,0.15), rgba(232,160,200,0.1));
+    border: 1px solid rgba(196,181,244,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.15rem; flex-shrink: 0;
+  }
+
+  /* STAFF CARD */
+  .staff-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px; padding: 40px;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+
+  .staff-card::before {
+    content: '';
+    position: absolute; top: -60px; right: -60px;
+    width: 200px; height: 200px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(196,181,244,0.12), transparent 70%);
+    pointer-events: none;
+  }
+
+  .staff-img-wrap {
+    width: 180px; height: 180px; border-radius: 50%;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, var(--lavender), var(--pink));
+    padding: 3px;
+    box-shadow: 0 0 40px rgba(196,181,244,0.3);
+  }
+
+  .staff-img-wrap img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover; object-position: top;
+  }
+
+  .staff-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; font-weight: 700;
+    color: var(--white); margin-bottom: 4px;
+  }
+
+  .staff-role {
+    font-size: 0.82rem; color: var(--lavender);
+    letter-spacing: 0.1em; text-transform: uppercase;
+    font-weight: 600; margin-bottom: 16px;
+  }
+
+  .staff-quote {
+    font-size: 0.88rem; color: rgba(255,255,255,0.6);
+    line-height: 1.6; font-style: italic;
+  }
+
+  .heart-tags {
+    display: flex; gap: 8px; justify-content: center; margin-top: 18px;
+    flex-wrap: wrap;
+  }
+
+  .heart-tag {
+    background: rgba(232,160,200,0.15);
+    border: 1px solid rgba(232,160,200,0.25);
+    color: var(--pink);
+    font-size: 0.78rem; font-weight: 600;
+    padding: 4px 14px; border-radius: 50px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep);
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 40px 60px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+
+  .footer-logo {
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .footer-logo img {
+    width: 38px; height: 38px; border-radius: 50%; object-fit: cover;
+  }
+
+  .footer-logo span {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--lavender);
+  }
+
+  footer p {
+    font-size: 0.82rem; color: rgba(255,255,255,0.4);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+
+  /* responsive */
+  @media (max-width: 900px) {
+    nav { padding: 14px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    #about { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .about-circle { width: 260px; height: 260px; }
+    .about-circle::before { width: 210px; height: 210px; }
+    .about-logo { width: 150px; height: 150px; }
+    footer { flex-direction: column; gap: 16px; text-align: center; }
+    .social-strip { left: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">
+    <img src="Smkn9.png" alt="SMKN9 Logo">
+    <span>SMKN9 SHOP</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Kontak</a></li>
+    <li><a href="#menu" class="nav-cta">Pesan Sekarang</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="tree-silhouette"></div>
+  <div class="city"></div>
+  <!-- lamp left -->
+  <div class="lamp lamp-left">
+    <svg viewBox="0 0 28 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="12" y="30" width="4" height="90" fill="#1a1f3c"/>
+      <ellipse cx="14" cy="18" rx="10" ry="8" fill="#f5a623" opacity="0.9"/>
+      <ellipse cx="14" cy="22" rx="6" ry="4" fill="#f5a623"/>
+      <rect x="4" y="26" width="20" height="4" rx="2" fill="#1a1f3c"/>
+    </svg>
+  </div>
+  <!-- lamp right -->
+  <div class="lamp lamp-right">
+    <svg viewBox="0 0 28 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="12" y="30" width="4" height="90" fill="#1a1f3c"/>
+      <ellipse cx="14" cy="18" rx="10" ry="8" fill="#f5a623" opacity="0.9"/>
+      <ellipse cx="14" cy="22" rx="6" ry="4" fill="#f5a623"/>
+      <rect x="4" y="26" width="20" height="4" rx="2" fill="#1a1f3c"/>
+    </svg>
+  </div>
+  <div class="fence"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">🍽️ Makanan &amp; Minuman Segar</div>
+    <h1>SMKN9 SHOP</h1>
+    <p class="hero-sub">Nikmati cita rasa terbaik dari dapur SMKN 9 Medan — sajian hangat, harga bersahabat, kualitas terjamin.</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">Lihat Menu</a>
+      <a href="#contact" class="btn-outline">Hubungi Kami</a>
+    </div>
+  </div>
+
+  <div class="social-strip">
+    <a class="social-btn" href="#" title="Instagram">@</a>
+    <a class="social-btn" href="#" title="Hashtag">#</a>
+    <a class="social-btn" href="#" title="WhatsApp">&amp;</a>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="section-label">Menu Kami</div>
+  <h2 class="section-title">Makanan &amp; Minuman</h2>
+  <p class="section-desc">Pilihan menu lezat yang disiapkan fresh setiap hari oleh tim SMKN9 SHOP untuk kepuasan pelanggan.</p>
+
+  <div class="menu-grid">
+    <!-- MAKANAN -->
+    <div class="menu-card fade-up" style="animation-delay:0s">
+      <div class="menu-emoji">🍳</div>
+      <div class="menu-info">
+        <span class="menu-type type-food">Makanan</span>
+        <h3>Nasi Goreng</h3>
+        <p>Nasi goreng spesial dengan bumbu rempah khas, dilengkapi telur dan pelengkap pilihan.</p>
+        <div class="menu-price">Rp 15.000</div>
+      </div>
+    </div>
+
+    <div class="menu-card fade-up" style="animation-delay:0.1s">
+      <div class="menu-emoji">🍲</div>
+      <div class="menu-info">
+        <span class="menu-type type-food">Makanan</span>
+        <h3>Bakso</h3>
+        <p>Bakso kenyal berukuran jumbo dalam kuah kaldu sapi yang gurih dan kaya rasa.</p>
+        <div class="menu-price">Rp 13.000</div>
+      </div>
+    </div>
+
+    <div class="menu-card fade-up" style="animation-delay:0.2s">
+      <div class="menu-emoji">🍜</div>
+      <div class="menu-info">
+        <span class="menu-type type-food">Makanan</span>
+        <h3>Mie Goreng</h3>
+        <p>Mie goreng lezat dengan bumbu saus spesial, sayuran segar, dan topping ayam.</p>
+        <div class="menu-price">Rp 13.000</div>
+      </div>
+    </div>
+
+    <!-- MINUMAN -->
+    <div class="menu-card fade-up" style="animation-delay:0.3s">
+      <div class="menu-emoji">☕</div>
+      <div class="menu-info">
+        <span class="menu-type type-drink">Minuman</span>
+        <h3>Kopi</h3>
+        <p>Kopi pilihan yang diseduh dengan teknik terbaik, tersedia dalam berbagai varian sajian.</p>
+        <div class="menu-price">Rp 8.000</div>
+      </div>
+    </div>
+
+    <div class="menu-card fade-up" style="animation-delay:0.4s">
+      <div class="menu-emoji">🧋</div>
+      <div class="menu-info">
+        <span class="menu-type type-drink">Minuman</span>
+        <h3>Es boba</h3>
+        <p>Es boba yang menyegarkan, disajikan dengan es batu pilihan yang dingin sempurna.</p>
+        <div class="menu-price">Rp 5.000</div>
+      </div>
+    </div>
+
+    <div class="menu-card fade-up" style="animation-delay:0.5s">
+      <div class="menu-emoji">🍊</div>
+      <div class="menu-info">
+        <span class="menu-type type-drink">Minuman</span>
+        <h3>Es Jeruk</h3>
+        <p>Perasan jeruk segar asli tanpa pengawet, manis, asam, dan menyegarkan tenggorokan.</p>
+        <div class="menu-price">Rp 6.000</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-visual">
+    <div class="about-circle">
+      <img class="about-logo" src="Smkn9.png" alt="Logo SMKN9">
+    </div>
+    <div class="about-stat-row">
+      <div class="stat">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Menu Pilihan</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">9</div>
+        <div class="stat-label">SMKN Negeri</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Fresh Daily</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-text">
+    <div class="section-label">Tentang Kami</div>
+    <h2 class="section-title">SMKN 9 Medan<br>Hadir untuk Anda</h2>
+    <p class="section-desc">SMKN9 SHOP adalah kantin dan toko makanan resmi SMK Negeri 9 Medan yang menyajikan berbagai pilihan makanan dan minuman berkualitas dengan harga terjangkau untuk seluruh warga sekolah.</p>
+
+    <div class="feature-list">
+      <div class="feature-item">
+        <div class="feature-dot">✅</div>
+        Bahan-bahan segar pilihan, dimasak setiap hari
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot">💰</div>
+        Harga terjangkau, ramah di kantong pelajar
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot">🕐</div>
+        Buka setiap hari sekolah, siap melayani Anda
+      </div>
+      <div class="feature-item">
+        <div class="feature-dot">🏆</div>
+        Dikelola langsung oleh siswa & guru SMKN 9
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Hubungi Kami</div>
+  <h2 class="section-title">Kontak &amp; Pemesanan</h2>
+  <p class="section-desc">Ada pertanyaan atau ingin memesan? Hubungi tim kami melalui informasi di bawah ini.</p>
+
+  <div class="contact-inner">
+    <div class="contact-card">
+      <div class="contact-info-item">
+        <div class="ci-icon">📍</div>
+        <div>
+          <strong>Alamat</strong><br>
+          Jl. Gatot subroto, Medan, Sumatera Utara
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">📞</div>
+        <div>
+          <strong>Telepon</strong><br>
+          083128420102
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">📱</div>
+        <div>
+          <strong>WhatsApp</strong><br>
+          +62 831-2842-0102
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">📧</div>
+        <div>
+          <strong>Email</strong><br>
+          smkn9shop@smkn9medan.sch.id
+        </div>
+      </div>
+      <div class="contact-info-item">
+        <div class="ci-icon">🕐</div>
+        <div>
+          <strong>Jam Operasional</strong><br>
+          Senin–Jumat, 07.00–15.00 WIB
+        </div>
+      </div>
+    </div>
+
+    <!-- Staff Card with Image 3 -->
+    <div class="staff-card">
+      <div class="staff-img-wrap">
+        <img src="Goo kim.jpg" alt="Staff SMKN9 SHOP">
+      </div>
+      <div class="staff-name">Tim SMKN9 SHOP</div>
+      <div class="staff-role">Customer Service &amp; Kasir</div>
+      <p class="staff-quote">"Kami siap melayani dengan sepenuh hati! Jangan ragu untuk memesan menu favorit Anda — kami pastikan makanan dan minuman tersaji segar dan lezat setiap hari."</p>
+      <div class="heart-tags">
+        <span class="heart-tag">💗 Ramah</span>
+        <span class="heart-tag">💗 Cepat</span>
+        <span class="heart-tag">💗 Profesional</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="Smkn9.png" alt="Logo">
+    <span>SMKN9 SHOP</span>
+  </div>
+  <p>© 2025 SMKN9 SHOP — SMK Negeri 9 Medan. All rights reserved.</p>
+  <p style="color:rgba(196,181,244,0.5); font-size:0.8rem;">Made with ❤️ by Tim SMKN9</p>
+</footer>
+
+<script>
+  // Scroll-triggered fade-up for menu cards
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => {
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
